@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Shopper Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles for the modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand"><h1>E-Shopper</h1></div>
+        <div class="nav-links">
+            <a href="#" id="home">Home</a>
+            <a href="#" id="collections">Collections</a>
+            <a href="#" id="logout">Logout</a>
+            <a href="#" id="signInButton">Sign In</a>
+            <a href="#" id="orders">Orders</a>
+            <a href="#" id="cart">Cart</a>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search for products, brands and more...">
+            <button>Search</button>
+        </div>
+    </header>
+    <div class="hero">
+        <h2>Shop the Trends</h2>
+        <p class="tagline">Style is the way to say who you are without having to speak. Great things are not accomplished by those who yield to trends and fads and popular opinion.</p>
+        <button class="shop-now-btn" onclick="shopNow()">Shop Now</button>
+    </div>
+
+    <section class="dashboard">
+        <h2>Welcome to Your Dashboard</h2>
+        <div class="categories">
+            <h3>Product Categories</h3>
+            <div class="category-icons">
+                <div class="category">
+                    <img src="images/electronics.png" alt="Electronics" />
+                    <p>Electronics</p>
+                </div>
+                <div class="category">
+                    <img src="images/clothing.png" alt="Clothing" />
+                    <p>Clothing</p>
+                </div>
+                <div class="category">
+                    <img src="images/home.png" alt="Home" />
+                    <p>Home</p>
+                </div>
+                <div class="category">
+                    <img src="images/books.png" alt="Books" />
+                    <p>Books</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h3>Personalized Recommendations</h3>
+            <div class="product-list">
+                <div class="product">
+                    <img src="images/product1.png" alt="Product 1">
+                    <p>Product Name 1</p>
+                    <button class="action-btn">Add to Cart</button>
+                    <button class="action-btn">View Details</button>
+                </div>
+                <div class="product">
+                    <img src="images/product2.png" alt="Product 2">
+                    <p>Product Name 2</p>
+                    <button class="action-btn">Add to Cart</button>
+                    <button class="action-btn">View Details</button>
+                </div>
+                <div class="product">
+                    <img src="images/product3.png" alt="Product 3">
+                    <p>Product Name 3</p>
+                    <button class="action-btn">Add to Cart</button>
+                    <button class="action-btn">View Details</button>
+                </div>
+                <div class="product">
+                    <img src="images/product4.png" alt="Product 4">
+                    <p>Product Name 4</p>
+                    <button class="action-btn">Add to Cart</button>
+                    <button class="action-btn">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="daily-deals">
+            <h3>Daily Deals</h3>
+            <div class="deals-list">
+                <div class="deal">
+                    <img src="images/deal1.png" alt="Deal 1">
+                    <p>Deal Name 1 - 20% Off</p>
+                </div>
+                <div class="deal">
+                    <img src="images/deal2.png" alt="Deal 2">
+                    <p>Deal Name 2 - Buy One Get One</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-collections">
+            <h3>Featured Collections</h3>
+            <div class="collections-list">
+                <div class="collection">
+                    <img src="images/collection1.png" alt="Collection 1">
+                    <p>Collection Name 1</p>
+                </div>
+                <div class="collection">
+                    <img src="images/collection2.png" alt="Collection 2">
+                    <p>Collection Name 2</p>
+                </div>
+                <div class="collection">
+                    <img src="images/collection3.png" alt="Collection 3">
+                    <p>Collection Name 3</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="promotions">
+            <h3>Promotions</h3>
+            <p>Check out our latest discounts and offers!</p>
+            <button class="action-btn">View Promotions</button>
+        </div>
+
+        <div class="customer-support">
+            <h3>Customer Support</h3>
+            <ul>
+                <li><a href="#">Live Chat</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Modal for Sign In -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h3>Login</h3>
+            <input type="email" id="customerEmail" placeholder="Email" required>
+            <input type="password" id="customerPassword" placeholder="Password" required>
+            <button onclick="customerLogin()" class="green">Login</button>
+            <p>New customer? <a href="#" onclick="showSignupForm()" class="green">Sign up for free</a></p>
+            <div class="message" id="signInMessage" style="display:none;"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Policies</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <a href="#" class="social-icon"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                <a href="#" class="social-icon"><img src="images/twitter-icon.png" alt="Twitter"></a>
+                <a href="#" class="social-icon"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                <a href="#" class="social-icon"><img src="images/linkedin-icon.png" alt="LinkedIn"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 E-Shopper. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Sign-in Functionality -->
+    <script>
+        document.getElementById('signInButton').onclick = function() {
+            document.getElementById('loginModal').style.display = "block";
+        }
+        document.getElementById('closeModal').onclick = function() {
+            document.getElementById('loginModal').style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('loginModal')) {
+                document.getElementById('loginModal').style.display = "none";
+            }
+        }
+
+        // Placeholder function for login
+        function customerLogin() {
+            const email = document.getElementById('customerEmail').value;
+            const password = document.getElementById('customerPassword').value;
+            const messageDiv = document.getElementById('signInMessage');
+
+            // Simulate login check
+            if (email === "customer@example.com" && password === "password") {
+                messageDiv.style.display = "block";
+                messageDiv.innerHTML = "Login successful!";
+                messageDiv.style.color = "green";
+                setTimeout(() => {
+                    document.getElementById('loginModal').style.display = "none";
+                    // Redirect to customer home page or dashboard here
+                }, 2000);
+            } else {
+                messageDiv.style.display = "block";
+                messageDiv.innerHTML = "Invalid credentials. Please try again.";
+                messageDiv.style.color = "red";
+            }
+        }
+        
+        function showSignupForm() {
+            alert("Show sign-up form functionality here.");
+        }
+    </script>
+</body>
+</html>
